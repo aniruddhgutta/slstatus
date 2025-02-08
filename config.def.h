@@ -12,6 +12,8 @@ static const char unknown_str[] = "n/a";
 /*
  * function            description                     argument (example)
  *
+ * battery_icon        battery_perc with an icon       battery name (BAT0)
+ *                                                     NULL on OpenBSD/FreeBSD
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
@@ -58,6 +60,8 @@ static const char unknown_str[] = "n/a";
  * uid                 UID of current user             NULL
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
+ * vol_icon            vol_perc with an icon           mixer file (/dev/mixer)
+ *                                                     NULL on OpenBSD/FreeBSD
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
  *                                                     NULL on OpenBSD/FreeBSD
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
