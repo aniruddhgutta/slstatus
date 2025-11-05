@@ -18,7 +18,7 @@
 		if (pscanf(CPU_FREQ, "%ju", &freq) != 1)
 			return NULL;
 
-		return fmt_human(freq * 1000, 1000);
+		return bprintf("%.1fGHz", (double)freq / 1000000.0);
 	}
 
 	const char *
@@ -69,7 +69,7 @@
 			return NULL;
 		}
 
-		return fmt_human(freq * 1E6, 1000);
+		return bprintf("%.1fGHz", (double)freq / 1000.0);
 	}
 
 	const char *
@@ -123,7 +123,7 @@
 			return NULL;
 		}
 
-		return fmt_human(freq * 1E6, 1000);
+		return bprintf("%.1fGHz", (double)freq / 1000.0);
 	}
 
 	const char *
