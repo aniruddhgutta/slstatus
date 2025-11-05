@@ -19,7 +19,7 @@
 		           &free, &free, &free) != 3)
 			return NULL;
 
-		return fmt_human(free * 1024, 1024);
+		return bprintf("%juMi", free / 1024);
 	}
 
 	const char *
@@ -53,7 +53,7 @@
 		    != 1)
 			return NULL;
 
-		return fmt_human(total * 1024, 1024);
+		return bprintf("%juMi", total / 1024);
 	}
 
 	const char *
@@ -71,7 +71,7 @@
 			return NULL;
 
 		used = (total - free - buffers - cached);
-		return fmt_human(used * 1024, 1024);
+		return bprintf("%juMi", used / 1024);
 	}
 #elif defined(__OpenBSD__)
 	#include <stdlib.h>
@@ -106,8 +106,7 @@
 			return NULL;
 
 		free_pages = uvmexp.npages - uvmexp.active;
-		return fmt_human(pagetok(free_pages, uvmexp.pageshift) *
-				 1024, 1024);
+		return bprintf("%juMi", pagetok(free_pages, uvmexp.pageshift));
 	}
 
 	const char *
@@ -131,8 +130,7 @@
 		if (!load_uvmexp(&uvmexp))
 			return NULL;
 
-		return fmt_human(pagetok(uvmexp.npages,
-					 uvmexp.pageshift) * 1024, 1024);
+		return bprintf("%juMi", pagetok(uvmexp.npages, uvmexp.pageshift));
 	}
 
 	const char *
@@ -143,8 +141,7 @@
 		if (!load_uvmexp(&uvmexp))
 			return NULL;
 
-		return fmt_human(pagetok(uvmexp.active,
-					 uvmexp.pageshift) * 1024, 1024);
+		return bprintf("%juMi", pagetok(uvmexp.active, uvmexp.pageshift));
 	}
 #elif defined(__FreeBSD__)
 	#include <sys/sysctl.h>
@@ -163,7 +160,7 @@
 		    || !len)
 			return NULL;
 
-		return fmt_human(vm_stats.t_free * getpagesize(), 1024);
+		return bprintf("%juMi", (vm_stats.t_free * getpagesize()) / (1024 * 1024));
 	}
 
 	const char *
@@ -176,7 +173,7 @@
 		                 &npages, &len, NULL, 0) < 0 || !len)
 			return NULL;
 
-		return fmt_human(npages * getpagesize(), 1024);
+		return bprintf("%juMi", (npages * getpagesize()) / (1024 * 1024));
 	}
 
 	const char *
@@ -207,6 +204,6 @@
 		                 &active, &len, NULL, 0) < 0 || !len)
 			return NULL;
 
-		return fmt_human(active * getpagesize(), 1024);
+		return bprintf("%juMi", (active * getpagesize()) / (1024 * 1024));
 	}
 #endif
