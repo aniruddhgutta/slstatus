@@ -56,6 +56,11 @@ printstatus(unsigned int iter)
 		if (!(res = args[i].func(args[i].args)))
 			res = unknown_str;
 
+		if (res[0] == '\0') {
+			statuses[i][0] = '\0';
+			continue;
+		}
+
 		if (esnprintf(statuses[i], sizeof(statuses[i]), args[i].fmt, res) < 0)
 			break;
 	}
