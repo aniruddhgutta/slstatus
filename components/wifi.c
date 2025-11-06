@@ -21,6 +21,18 @@
 	#define NET_OPERSTATE "/sys/class/net/%s/operstate"
 
 	const char *
+	wifi_icon(const char *interface)
+	{
+		const char *essid;
+
+		essid = wifi_essid(interface);
+		if (!essid || !essid[0])
+			return "󰤭";
+
+		return bprintf("󰤨 %s", essid);
+	}
+
+	const char *
 	wifi_perc(const char *interface)
 	{
 		int cur;

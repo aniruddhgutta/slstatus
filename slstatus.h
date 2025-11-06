@@ -85,5 +85,6 @@ const char *vol_icon(const char *card);
 const char *vol_perc(const char *card);
 
 /* wifi */
+const char *wifi_icon(const char *interface);
 const char *wifi_essid(const char *interface);
 const char *wifi_perc(const char *interface);
