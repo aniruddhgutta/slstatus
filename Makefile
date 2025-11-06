@@ -7,6 +7,7 @@ include config.mk
 REQ = util
 COM =\
 	components/battery\
+	components/bluetooth\
 	components/cat\
 	components/cpu\
 	components/datetime\

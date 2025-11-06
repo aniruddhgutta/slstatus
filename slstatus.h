@@ -6,6 +6,9 @@ const char *battery_remaining(const char *);
 const char *battery_state(const char *);
 const char *battery_icon(const char *);
 
+/* bluetooth */
+const char *bluetooth_icon(const char *unused);
+
 /* cat */
 const char *cat(const char *path);
 
