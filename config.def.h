@@ -70,8 +70,16 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument turn signal */
-	{ datetime, "%s",           "%F %T", 1,   -1 },
+	/* function         format            argument       turn  signal */
+	{ run_command,      "  󰎇 %s  |",     	"media -s",    1,    0  },
+	{ wifi_icon,        "  %s",           "wlan0",       1,    -1 },
+	{ bluetooth_icon,   "  %s",           NULL,          1,    -1 },
+	{ battery_icon,     "  %s",           "BAT0",        30,   -1 },
+	{ vol_icon,         "  %s  |",        "Master",      1,    1  },
+	{ ram_used,         "  %s",           NULL,          1,    -1 },
+	{ temp,             "  %sC",          "/sys/class/hwmon/hwmon5/temp1_input", 5, -1 },
+	{ cpu_freq,         "  %s  |",        NULL,          5,    -1 },
+	{ datetime,         "  %s  ",         "%b %d, %H:%M", 30,  -1 },
 };
 
 /* maximum output string length */
